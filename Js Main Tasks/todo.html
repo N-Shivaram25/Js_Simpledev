@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Task Tracker</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: #f0f4f8;
+      display: flex;
+      justify-content: center;
+      padding: 40px 0;
+    }
+    .container {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      width: 90%;
+      max-width: 500px;
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    input, select, textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    button {
+      background: #0077b6;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #023e8a;
+    }
+    .task-list {
+      margin-top: 25px;
+    }
+    .task {
+      background: #e6f1ff;
+      border-left: 5px solid #0077b6;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+    .task strong {
+      font-size: 16px;
+      display: block;
+    }
+    .task small {
+      color: #444;
+    }
+    .remove-btn {
+      float: right;
+      background: #d62828;
+      color: white;
+      padding: 4px 8px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Todo List</h2>
+    <div class="input-group">
+      <input type="text" id="taskName" placeholder="Task Name">
+      <textarea id="desc" rows="2" placeholder="Description (optional)"></textarea>
+      <input type="date" id="taskDate">
+      <input type="time" id="taskTime">
+      <select id="category">
+        <option value="Work">Work</option>
+        <option value="Study">Study</option>
+        <option value="Personal">Personal</option>
+        <option value="Other">Other</option>
+      </select>
+      <button onclick="addTask()">Add Task</button>
+    </div>
+
+    <div class="task-list" id="taskList"></div>
+  </div>
+
+  <script>
+    function addTask() {
+      const name = document.getElementById('taskName').value.trim();
+      const desc = document.getElementById('desc').value.trim();
+      const date = document.getElementById('taskDate').value;
+      const time = document.getElementById('taskTime').value;
+      const category = document.getElementById('category').value;
+
+      if (!name || !date || !time) return;
+
+      const taskList = document.getElementById('taskList');
+      const taskDiv = document.createElement('div');
+      taskDiv.className = 'task';
+      taskDiv.innerHTML = `
+        <button class="remove-btn" onclick="this.parentElement.remove()">X</button>
+        <strong>${name} [${category}]</strong>
+        <small>${desc}</small><br>
+        <small>📅 ${date} ⏰ ${time}</small>
+      `;
+      taskList.appendChild(taskDiv);
+
+      document.querySelectorAll('input, textarea, select').forEach(el => el.value = '');
+    }
+  </script>
+</body>
+</html>

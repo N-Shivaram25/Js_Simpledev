@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Amazon Style Cart UI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Roboto,Arial, Helvetica, sans-serif;
+      background: linear-gradient(135deg, #f3f4f6, #dbeafe);
+      height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+
+    .sidebar {
+      background: #111;
+      width: 160px;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 10px;
+      box-shadow: 3px 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .sidebar h2 {
+      color: #fff;
+      font-size: 20px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .sidebar button {
+      width: 100%;
+      margin: 10px 0;
+      padding: 12px 0;
+      background-color: #222;
+      color: #fff;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .sidebar button:hover {
+      background-color: #4f46e5;
+      transform: translateX(5px);
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
+    }
+
+    .reset-btn {
+      background-color: #b91c1c;
+    }
+
+    .reset-btn:hover {
+      background-color: #dc2626;
+    }
+
+    .content {
+      margin-left: 180px;
+      padding: 40px;
+      font-size: 18px;
+      width: 100%;
+    }
+
+    #cartDisplay {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      font-size: 20px;
+    }
+
+    .cart-icon {
+      font-size: 24px;
+      margin-right: 10px;
+      color: #222;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <h2>Add to Cart</h2>
+    <button onclick="addToCart(1)">+1</button>
+    <button onclick="addToCart(2)">+2</button>
+    <button onclick="addToCart(3)">+3</button>
+    <button class="reset-btn" onclick="resetCart()">Reset</button>
+  </div>
+
+  <div class="content">
+    <div id="cartDisplay">
+      <span class="cart-icon">🛒</span>
+      Items in Cart: <span id="cartQuantity">0</span>
+    </div>
+  </div>
+
+  <script>
+    let cartQuantity = 0;
+
+    function addToCart(count) {
+      cartQuantity += count;
+      document.getElementById('cartQuantity').textContent = cartQuantity;
+      alert(`${count} item(s) added to cart.\nTotal items: ${cartQuantity}`);
+    }
+
+    function resetCart() {
+      cartQuantity = 0;
+      document.getElementById('cartQuantity').textContent = cartQuantity;
+      alert("Cart has been reset.");
+    }
+  </script>
+
+</body>
+</html>
